@@ -2,3 +2,5 @@ ipykernel
 scikit-learn
 pandas
 dvc
+uvicorn[standard]
+joblib
