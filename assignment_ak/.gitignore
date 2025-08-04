@@ -1,6 +1,8 @@
 # Ignore Python virtual environment folder
 mlops/
 
+data/raw/housing.csv
+
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
 
