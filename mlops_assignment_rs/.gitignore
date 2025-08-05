@@ -1,0 +1,4 @@
+/data
+/mlops_env/
+/mlruns/
+*.pkl

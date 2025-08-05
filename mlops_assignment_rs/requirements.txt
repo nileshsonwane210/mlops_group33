@@ -1,0 +1,8 @@
+scikit-learn
+mlflow
+fastapi
+uvicorn
+joblib
+pandas
+dvc  # For data versioning
+pydantic  # For bonus input validation
