@@ -10,7 +10,8 @@ app = FastAPI()
 
 # Load the registered MLflow model (update with your exact model URI if needed)
 model_uri = "models:/california_housing_best_dt_model/1"  # Assumes version 1; check your MLflow UI
-model = mlflow.pyfunc.load_model(model_uri)
+# model = mlflow.pyfunc.load_model(model_uri)
+model = joblib.load("model/model.pkl")
 
 # Load the scaler from local file (downloaded from MLflow)
 scaler = joblib.load("scaler.pkl")  # Assumes it's in the repo root; adjust path if needed
