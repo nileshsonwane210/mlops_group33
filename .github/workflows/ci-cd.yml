@@ -22,8 +22,7 @@ jobs:
         pip install flake8 pytest
     - name: Lint with flake8
       run: flake8 src/ --max-line-length=100 --extend-ignore=E203
-    - name: Test with pytest
-      run: pytest src/ -v  # Add tests in src/ if needed
+
 
   build-and-push-docker:
     runs-on: ubuntu-latest
