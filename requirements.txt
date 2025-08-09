@@ -4,5 +4,6 @@ fastapi
 uvicorn
 joblib
 pandas
-dvc  # For data versioning
-pydantic  # For bonus input validation
+dvc
+pydantic
+prometheus-client  # Optional for /metrics

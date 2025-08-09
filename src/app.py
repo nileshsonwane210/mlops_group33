@@ -1,23 +1,46 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, Response
 from pydantic import BaseModel
 import joblib
 import pandas as pd
-
+import logging
+import sqlite3
+from datetime import datetime
+from prometheus_client import Counter, generate_latest  # For optional metrics
 
 app = FastAPI()
 
+# Setup logging to file
+logging.basicConfig(filename='app.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Load the registered MLflow model (update with your exact model URI if needed)
-model_uri = "models:/california_housing_best_dt_model/1"  # Assumes version 1; check your MLflow UI
-# model = mlflow.pyfunc.load_model(model_uri)
+# Optional: Prometheus metrics
+request_counter = Counter('prediction_requests_total', 'Total prediction requests')
+
+
+# Middleware to log requests and responses
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    start_time = datetime.now()
+    response: Response = await call_next(request)
+
+    # Log to file
+    log_data = {
+        "timestamp": start_time.isoformat(),
+        "method": request.method,
+        "path": request.url.path,
+        "client_ip": request.client.host,
+        "status": response.status_code
+    }
+    logging.info(f"Request: {log_data}")
+
+    # Increment metrics (optional)
+    request_counter.inc()
+
+    return response
+
+# Your existing model loading (unchanged)
 model = joblib.load("model/model.pkl")
-
-
-# Load the scaler from local file (downloaded from MLflow)
-scaler = joblib.load("scaler.pkl")  # Assumes it's in the repo root; adjust path if needed
-
-
-# Define input schema with Pydantic (for validation - bonus points!)
+scaler = joblib.load("scaler.pkl")
 
 
 class HousingInput(BaseModel):
@@ -33,16 +56,39 @@ class HousingInput(BaseModel):
 
 @app.post("/predict")
 def predict(input: HousingInput):
-    # Convert input to DataFrame (preserves column names)
     data = pd.DataFrame([input.dict()])
 
-    # Scale while keeping it as DataFrame with original columns
+    # Scale while keeping it as DataFrame with original columns (for reference)
     scaled_data = pd.DataFrame(
         scaler.transform(data),
         columns=data.columns  # Reattach the expected column names
     )
 
-    # Make prediction (now matches the model's expected schema)
-    prediction = model.predict(scaled_data)
+    # Convert to NumPy array without names to match model's training (fixes warning)
+    scaled_data_no_names = scaled_data.to_numpy()
 
-    return {"prediction": prediction[0]}  # Returns median house value
+    # Make prediction (now matches the model's expected schema)
+    prediction = model.predict(scaled_data_no_names)[0]  # Use [0] for single prediction
+
+    # Log to SQLite (create connection per request for thread safety)
+    conn = sqlite3.connect('logs.db')
+    c = conn.cursor()
+    c.execute('''CREATE TABLE IF NOT EXISTS predictions
+                 (timestamp TEXT, input_data TEXT, output REAL)''')
+    timestamp = datetime.now().isoformat()
+    input_str = str(input.dict())  # Convert input to string for storage
+    c.execute("INSERT INTO predictions (timestamp, input_data, output) VALUES (?, ?, ?)",
+              (timestamp, input_str, prediction))
+    conn.commit()
+    conn.close()
+
+    # Log output to file
+    logging.info(f"Prediction output: {prediction} for input: {input_str}")
+
+    return {"prediction": prediction}
+
+
+# Optional: Expose /metrics endpoint for monitoring
+@app.get("/metrics")
+def metrics():
+    return Response(content=generate_latest(), media_type="text/plain")
