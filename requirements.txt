@@ -1,6 +1,9 @@
-ipykernel
 scikit-learn
+mlflow
+fastapi
+uvicorn
+joblib
 pandas
 dvc
-uvicorn[standard]
-joblib
+pydantic
+prometheus-client  # Optional for /metrics

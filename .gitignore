@@ -1,0 +1,5 @@
+/data
+/mlops_env/
+/mlruns/
+*.pkl
+/src/__pycache__/

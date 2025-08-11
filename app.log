@@ -1,0 +1,16 @@
+2025-08-10 02:53:25,622 - INFO - Request: {'timestamp': '2025-08-10T02:53:25.621596', 'method': 'GET', 'path': '/', 'client_ip': '127.0.0.1', 'status': 404}
+2025-08-10 02:53:31,845 - INFO - Request: {'timestamp': '2025-08-10T02:53:31.845768', 'method': 'GET', 'path': '/docs', 'client_ip': '127.0.0.1', 'status': 200}
+2025-08-10 02:53:31,958 - INFO - Request: {'timestamp': '2025-08-10T02:53:31.950464', 'method': 'GET', 'path': '/openapi.json', 'client_ip': '127.0.0.1', 'status': 200}
+2025-08-10 02:54:15,341 - INFO - Request: {'timestamp': '2025-08-10T02:54:15.340866', 'method': 'GET', 'path': '/', 'client_ip': '127.0.0.1', 'status': 404}
+2025-08-10 02:54:21,069 - INFO - Request: {'timestamp': '2025-08-10T02:54:21.068010', 'method': 'GET', 'path': '/docs', 'client_ip': '127.0.0.1', 'status': 200}
+2025-08-10 02:54:21,176 - INFO - Request: {'timestamp': '2025-08-10T02:54:21.169973', 'method': 'GET', 'path': '/openapi.json', 'client_ip': '127.0.0.1', 'status': 200}
+2025-08-10 03:00:06,151 - INFO - Request: {'timestamp': '2025-08-10T03:00:06.150499', 'method': 'GET', 'path': '/', 'client_ip': '127.0.0.1', 'status': 404}
+2025-08-10 03:00:11,894 - INFO - Request: {'timestamp': '2025-08-10T03:00:11.894493', 'method': 'GET', 'path': '/docs', 'client_ip': '127.0.0.1', 'status': 200}
+2025-08-10 03:00:12,005 - INFO - Request: {'timestamp': '2025-08-10T03:00:11.998256', 'method': 'GET', 'path': '/openapi.json', 'client_ip': '127.0.0.1', 'status': 200}
+2025-08-10 03:00:19,448 - INFO - Prediction output: 1.6427973532668898 for input: {'MedInc': 0.0, 'HouseAge': 0.0, 'AveRooms': 0.0, 'AveBedrms': 0.0, 'Population': 0.0, 'AveOccup': 0.0, 'Latitude': 0.0, 'Longitude': 0.0}
+2025-08-10 03:00:19,450 - INFO - Request: {'timestamp': '2025-08-10T03:00:19.435163', 'method': 'POST', 'path': '/predict', 'client_ip': '127.0.0.1', 'status': 200}
+2025-08-11 19:34:07,441 - INFO - Request: {'timestamp': '2025-08-11T19:34:07.439498', 'method': 'GET', 'path': '/', 'client_ip': '127.0.0.1', 'status': 404}
+2025-08-11 19:34:13,863 - INFO - Request: {'timestamp': '2025-08-11T19:34:13.863486', 'method': 'GET', 'path': '/docs', 'client_ip': '127.0.0.1', 'status': 200}
+2025-08-11 19:34:14,004 - INFO - Request: {'timestamp': '2025-08-11T19:34:13.996445', 'method': 'GET', 'path': '/openapi.json', 'client_ip': '127.0.0.1', 'status': 200}
+2025-08-11 19:34:36,695 - INFO - Prediction output: 4.860650727272712 for input: {'MedInc': 8.3252, 'HouseAge': 41.0, 'AveRooms': 6.9841, 'AveBedrms': 1.0238, 'Population': 322.0, 'AveOccup': 2.5556, 'Latitude': 37.88, 'Longitude': -122.23}
+2025-08-11 19:34:36,696 - INFO - Request: {'timestamp': '2025-08-11T19:34:36.634290', 'method': 'POST', 'path': '/predict', 'client_ip': '127.0.0.1', 'status': 200}
