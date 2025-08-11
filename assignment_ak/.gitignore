@@ -1,0 +1,19 @@
+# Ignore Python virtual environment folder
+mlops/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VSCode settings 
+.vscode/
+
+# MacOS system files
+.DS_Store
+
+# Environment variables or secrets
+.env
+
+
+data/raw/housing.csv
+src/__pycache__/
+mlruns/
