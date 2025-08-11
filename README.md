@@ -1,7 +1,7 @@
 # mlops_group33
 # MLOps Assignment Summary: California Housing Predictor Pipeline
 
-## Project Overview
+## Project Overview and Architecture
 This project implements an end-to-end MLOps pipeline for predicting median house values using the California Housing dataset. The pipeline integrates data preparation, model training and tracking, API serving, containerization, CI/CD automation, and logging/monitoring, demonstrating best practices for reproducible ML workflows.
 
 Key components:
