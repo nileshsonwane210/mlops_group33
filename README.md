@@ -28,8 +28,3 @@ These challenges highlighted the importance of clean code, thread safety in asyn
 - **Model Performance**: Decision Tree (max_depth=5) achieved RMSE ~0.75 and R2 ~0.60 on test data; Linear Regression had RMSE ~0.72 and R2 ~0.61 (tracked in MLflow UI).
 - **Pipeline Outcomes**: Successful CI/CD runs build and push the image to Docker Hub, enabling quick deployments. Logging captures real-time data for auditing (viewable via `sqlite3 logs.db` or file inspection).
 - **Key Learnings**: MLOps requires iterative debugging (e.g., linting loops taught code hygiene); tools like MLflow and DVC enhance reproducibility; containerization and automation streamline scaling. Overall, this built skills in integrating ML with DevOps practices.
-
-## Demo Video
-[Link to 5-min demo video on YouTube] (Replace with your unlisted video URL showing repo, Docker run with prediction, MLflow UI, Actions workflow, and logs query.)
-
-This pipeline is now complete and ready for production-like use. Future improvements could include advanced monitoring (e.g., Grafana) or model versioning.
